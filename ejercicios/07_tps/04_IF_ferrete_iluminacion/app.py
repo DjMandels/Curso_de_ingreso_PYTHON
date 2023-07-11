@@ -38,6 +38,58 @@ class App(customtkinter.CTk):
 
 
     def btn_calcular_on_click(self):
+        #A.	Si compra 6 o más  lamparitas bajo consumo tiene un descuento del 50%. 
+        #B.	Si compra 5  lamparitas bajo consumo marca "ArgentinaLuz" se hace un descuento del 40 % y si es de otra marca el descuento es del 30%.
+		#C.	Si compra 4  lamparitas bajo consumo marca "ArgentinaLuz" o “FelipeLamparas” se hace un descuento del 25 % y si es de otra marca el descuento es del 20%.
+		#D.	Si compra 3  lamparitas bajo consumo marca "ArgentinaLuz"  el descuento es del 15%, si es  “FelipeLamparas” se hace un descuento del 10 % y si es de otra marca un 5%.
+		#E.	Si el importe final con descuento suma más de $4000  se obtien un descuento adicional de 5%.
+
+        lamp = 800
+        cantidad = self.combobox_cantidad.get()
+        marca = self.combobox_marca.get()
+        cant = int(cantidad)
+        descuento = 0
+
+        #A:
+        if cant >= 6:
+            descuento = 50
+        
+        #B:
+        if cant == 5 and marca == "ArgentinaLuz":
+            descuento = 40
+        elif cant == 5 and marca != "ArgentinaLuz":
+            descuento = 30
+
+        #C:
+        if cant == 4 and (marca == "ArgentinaLuz" or marca == "FelipeLamparas"):
+            descuento = 25
+        elif cant == 4 and marca != "ArgentinaLuz" and marca != "FelipeLamparas":
+            descuento = 20
+
+        #D:
+        if cant == 3 and marca == "ArgentinaLuz" :
+            descuento = 15
+        elif cant == 3 and marca == "FelipeLamparas" :
+            descuento = 10
+        elif cant == 3 and marca != "ArgentinaLuz" and marca != "FelipeLamparas":
+            descuento = 5
+
+        #E:
+        #E.	Si el importe final con descuento suma más de $4000  se obtien un descuento adicional de 5%.
+        
+        value = lamp * descuento / 100
+        result = float(lamp - value) * cant
+        
+        
+        if result >= 4000:
+            alert("Compra","TOTAL="+str(result)+"// DESCUENTO ANTERIOR:"+str(descuento))
+            descuento = descuento + 5
+            value = lamp * descuento / 100
+            result = float(lamp - value) * cant
+
+
+        alert("Compra","Compra "+str(cant)+" lamparas a: " + str(result) + " (Descuento:"+str(descuento)+"%)")
+
         pass
         
     

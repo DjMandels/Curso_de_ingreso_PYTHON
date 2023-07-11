@@ -6,8 +6,8 @@ import customtkinter
 
 
 '''
-nombre:
-apellido:
+nombre: Nelson Cesar
+apellido: Ortega
 ---
 Ejercicio: entrada_salida_01
 ---
@@ -29,6 +29,10 @@ class App(customtkinter.CTk):
         self.btn_mostrar.grid(row=2, pady=20, columnspan=2, sticky="nsew")
 
     def btn_mostrar_on_click(self):
+
+        mensaje = "Esto no anda, funciona."
+        print("Mensaje en consola:" + mensaje)
+        alert("Mensaje en pantalla:",mensaje)
         pass
 
 
