@@ -16,7 +16,7 @@ en función de la estación del año y del destino elegido:
     Si es Verano:
         Bariloche tiene un descuento del 20%
         Cataratas y Cordoba tienen un aumento del 10%
-        Mar del plata tiene un aumento del 20%
+        Mar del plata       tiene un aumento del 20%
     Si es Primavera u Otoño:
         Bariloche tiene un aumento del 10%
         Cataratas tiene un aumento del 10%
@@ -52,6 +52,75 @@ class App(customtkinter.CTk):
         
     
     def btn_informar_on_click(self):
+
+        dest = self.combobox_destino.get()
+        estaciones = self.combobox_estaciones.get()
+        viaje = 15000
+        
+        match estaciones:
+            case 'Invierno':
+                
+                match dest:
+                    case 'Bariloche':
+                        mensaje = "aumento del 20%"
+                        calculo = 1
+                        valor= 20
+                    case 'Mar del plata':
+                        mensaje = "descuento del 20%"
+                        calculo = 0
+                        valor= 20
+                    case other:
+                        mensaje = "descuento del 10%"
+                        calculo = 0
+                        valor= 10
+         
+            case 'Verano':
+                
+                match dest:
+                    case 'Bariloche':
+                        mensaje = "descuento del 20%"
+                        calculo = 0
+                        valor= 20
+                    case 'Mar del plata':
+                        mensaje = "aumento del 20%"
+                        calculo = 1
+                        valor= 20
+                    case other:
+                        mensaje = "aumento del 10%"
+                        calculo = 1
+                        valor= 10
+
+            case other:
+                
+                match dest:
+                    case 'Cordoba':
+                        mensaje = "precio sin descuento"
+                        calculo = 3
+                        valor = 1
+                    case _:
+                        mensaje = "aumento del 10%"
+                        calculo = 1
+                        valor= 10
+             
+        tarifa = viaje * valor / 100      
+        
+        match calculo:
+            case 1:
+                #aumento
+                total = viaje + tarifa
+                print("11")
+            case 0:
+                #descuento
+                total = viaje - tarifa
+                print("22")
+            case _:
+                #igual
+                print("33")
+                total = viaje
+
+        
+        alert("Alerta!!","Tiene un " + mensaje + ", total=" + str(total))
+        
         pass
             
     

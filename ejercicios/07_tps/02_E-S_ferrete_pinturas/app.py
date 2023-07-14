@@ -44,9 +44,23 @@ class App(customtkinter.CTk):
         self.btn_convertir_f_c.grid(row=4, pady=10, columnspan=2, sticky="nsew")
     
     def btn_convertir_c_f_on_click(self):
+        
+        c = self.txt_temperatura_c.get()
+        c = float(c)
+        self.txt_temperatura_f.delete(0,100)
+        value = (c *9/5) + 32
+        alert("Temperatura",str(c) + "°C son equivalentes a: " + str(value) + "°F")
+        self.txt_temperatura_f.insert(0,value)
+
         pass
 
     def btn_convertir_f_c_on_click(self):
+        f = self.txt_temperatura_f.get()
+        f = float(f)
+        self.txt_temperatura_c.delete(0,100)
+        value = (f -32) * 5/9
+        alert("Temperatura",str(f) + "°F son equivalentes a: " + str(value) + "°C")
+        self.txt_temperatura_c.insert(0,value)
         pass
     
     

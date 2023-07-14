@@ -52,45 +52,50 @@ class App(customtkinter.CTk):
         marca = self.combobox_marca.get()
         cant = int(cantidad)
         descuento = 0
+        mensaje = ""
 
-        #A:
-        if cant >= 6:
-            descuento = 50
-        
-        #B:
-        if cant == 5:
-            if marca == "ArgentinaLuz":
-                descuento = 40
-            else:
-                descuento = 30
+        match cant:
+            case 3:
+                #D:
+                match marca:
+                    case "ArgentinaLuz":
+                        descuento = 15
+                    case "FelipeLamparas":
+                        descuento = 10
+                    case _:
+                        descuento = 5
 
-        #C:
-        if cant == 4:
-            if marca == "ArgentinaLuz" or marca == "FelipeLamparas":
-                descuento = 25
-            else:
-                descuento = 20
+            case 4:
+                #C:
+                match marca:
+                    case "ArgentinaLuz" | "FelipeLamparas":
+                        descuento = 25
+                    case _:
+                        descuento = 20
+            case 5:
+                #B:
+                match marca:
+                    case "ArgentinaLuz":
+                        descuento = 40
+                    case _:
+                        descuento = 30        
 
-        #D:
-        if cant == 3:
-            if marca == "ArgentinaLuz" :
-                descuento = 15
-            elif marca == "FelipeLamparas" :
-                descuento = 10
-            else:
-                descuento = 5
+            case _:
+                #A:
+                descuento = 50
+       
         
         value = lamp * descuento / 100
         result = float(lamp - value) * cant
         
         #E:
         if result >= 4000:
-            alert("Compra","Total="+str(result)+"// Descuento anterior:"+str(descuento))
+            mensaje = "Total="+str(result)+"// Descuento inicial:"+str(descuento)+"\n Ahora: "
             descuento = 5
             aux = (result * descuento) / 100 
             result = result - aux
         
-        alert("Compra","Compra "+str(cant)+" lamparas a: " + str(result) + " (Descuento:"+str(descuento)+"%)")
+        alert("Compra",mensaje + "Compra "+str(cant)+" lamparas a: " + str(result) + " (Descuento:"+str(descuento)+"%)")
 
         pass
         
