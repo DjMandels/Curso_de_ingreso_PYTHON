@@ -24,6 +24,14 @@ class App(customtkinter.CTk):
         
     
     def btn_mostrar_iteracion_on_click(self):
+
+        num = 10
+        while num > 0:
+            alert("alerta!!",num)
+            num -= 1
+
+        alert("Alerta!!", "FIN")
+    
         pass
     
     

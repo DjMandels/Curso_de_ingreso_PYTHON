@@ -31,6 +31,32 @@ class App(customtkinter.CTk):
 
 
     def btn_comenzar_ingreso_on_click(self):
+        
+        vuelta = 0
+        suma = 0
+
+        while vuelta < 5:
+            char = prompt("Ingresar","Reingrese:")
+            if char==None :
+               break
+            if not char.isnumeric():
+                alert("Atencion","Debe ingresar un valor numerico")
+                break
+            
+            suma += int(char)
+            if suma=="":
+                suma = 0
+                
+            self.txt_suma_acumulada.delete(0,100)
+            self.txt_suma_acumulada.insert(0,suma)
+            
+            vuelta += 1
+
+        total = int(suma/vuelta)
+        self.txt_promedio.delete(0,100)
+        self.txt_promedio.insert(0,total)
+        alert("Alerta!!", "FIN")
+        
         pass
 
     

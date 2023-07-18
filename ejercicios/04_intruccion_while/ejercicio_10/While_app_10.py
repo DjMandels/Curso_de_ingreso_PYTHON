@@ -33,6 +33,41 @@ class App(customtkinter.CTk):
 
 
     def btn_comenzar_ingreso_on_click(self):
+
+        vuelta = True
+        negativo = 0
+        positivo = 0
+        cant_negativo = 0
+        cant_positivo = 0
+        cant_zero = 0
+
+        while vuelta:
+            char = prompt("Ingresar","Valor:")
+            if char==None:
+                break
+            if char == "": ## or not char.isnumeric()
+                alert("Alerta!!", "Debe Ingresar un numero")
+                continue
+            
+            val = int(char)
+
+            match val:
+                case _ as value if value < 0 :
+                    negativo += val
+                    #negativo -= val
+                    cant_negativo += 1
+                case _ as value if value > 0 :
+                    positivo += val
+                    cant_positivo += 1
+                case 0:
+                    cant_zero += 1
+
+        dif = positivo - negativo
+
+        alert("Resultados","negativos=" + str(negativo) + " (cant:" + str(cant_negativo) + ") / positivos=" + str(positivo) + " (cant:" + str(cant_positivo) + ") / diferencia entre ambos=" + str(dif) + " / cant ceros=" + str(cant_zero))
+                
+        alert("Alerta!!", "FIN")
+
         pass
 
     

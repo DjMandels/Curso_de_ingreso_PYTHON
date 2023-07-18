@@ -36,6 +36,35 @@ class App(customtkinter.CTk):
                               columnspan=2, sticky="nsew")
 
     def btn_comenzar_ingreso_on_click(self):
+
+        vuelta = True
+        min = 0
+        max = 0
+        while vuelta:
+            char = prompt("Ingresar","Valor:")
+            if char==None:
+                break
+            
+            if char != "": 
+                if min == 0 and max == 0:
+                    min = int(char)
+                    max = int(char)
+                else:
+                    if int(char) >= max:
+                        max = int(char)
+                    if int(char) <= min:
+                        min = int(char)
+            
+          
+
+        self.txt_minimo.delete(0,100)
+        self.txt_minimo.insert(0,min)
+        
+        self.txt_maximo.delete(0,100)
+        self.txt_maximo.insert(0,max)
+        
+        alert("Alerta!!", "FIN")
+
         pass
 
 

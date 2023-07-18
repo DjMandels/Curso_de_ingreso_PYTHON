@@ -32,6 +32,35 @@ class App(customtkinter.CTk):
 
 
     def btn_comenzar_ingreso_on_click(self):
+
+        vuelta = True
+        positivo = 0
+        negativo = 0
+
+        while vuelta:
+            char = prompt("Ingresar","Reingrese:")
+            if char==None or char == "0" :
+                break
+               
+             
+            if char=="":
+                char = 0
+            
+            if int(char) < 0:
+                negativo *= int(char) 
+            else:
+                positivo += int(char)
+            
+
+        
+        self.txt_suma_acumulada.delete(0,100)
+        self.txt_suma_acumulada.insert(0,positivo)
+        
+        self.txt_producto.delete(0,100)
+        self.txt_producto.insert(0,negativo)
+        
+        alert("Alerta!!", "FIN")
+
         pass
 
     

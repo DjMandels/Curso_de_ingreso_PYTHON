@@ -25,6 +25,16 @@ class App(customtkinter.CTk):
         
     
     def btn_validar_letra_on_click(self):
+        
+        char = prompt("Ingresar","Letras=")
+        
+        while char != "U" and char !="T" and char != "N":
+            char = prompt("Ingresar","Reingrese:" + str(char))
+            if char == None :
+                break
+        alert("Alerta!!", "FIN")
+
+        
         pass
             
     
